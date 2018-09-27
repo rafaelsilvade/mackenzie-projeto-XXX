@@ -1,17 +1,14 @@
-# [NOME DA DISCIPLINA] X sem. 20XX
+# [NOME DA DISCIPLINA] Obj. Inteligentes Conectados 2º sem. 2018
 
-## Turma XXX
-## Projeto: "nome do projeto"
+## Turma 5K12
+## Projeto: Carrinho
 ## Integrantes do grupo:
 
-* Aluno 1
-* Aluno 2
-* Aluno 3
-* Aluno 4
+Rafael Silva de Andrade 31889808
 
 ## Descrição resumida do projeto
 
-Descreva resumidamente o projeto aqui.
+Carrinho de controle remoto(via wifi) com nodeMCU.
 
 _______________________________________
 Obs:
