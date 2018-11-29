@@ -5,11 +5,7 @@
 //defines de id mqtt e tópicos para publicação e subscribe
 #define TOPICO_SUBSCRIBE "MQTTCARMackenzieEnvia"     //tópico MQTT de escuta
 #define TOPICO_PUBLISH   "MQTTCARMackenzieRecebe"    //tópico MQTT de envio de informações para Broker
-#define ID_MQTT  "Rf31889808Mackenzie"     //id mqtt (para identificação de sessão)
-                                           //IMPORTANTE: este deve ser único no broker (ou seja, 
-                                           //            se um client MQTT tentar entrar com o mesmo 
-                                           //            id de outro já conectado ao broker, o broker 
-                                           //            irá fechar a conexão de um deles).
+#define ID_MQTT  "Rf31889808Mackenzie"     
  
 //defines - mapeamento de pinos do NodeMCU
 #define D0    16
@@ -63,18 +59,13 @@ void setup()
     initMQTT();
 }
   
-//Função: inicializa comunicação serial com baudrate 115200 (para fins de monitorar no terminal serial 
-//        o que está acontecendo.
-//Parâmetros: nenhum
-//Retorno: nenhum
+
 void initSerial() 
 {
     Serial.begin(115200);
 }
  
-//Função: inicializa e conecta-se na rede WI-FI desejada
-//Parâmetros: nenhum
-//Retorno: nenhum
+
 void initWiFi() 
 {
     delay(10);
@@ -86,21 +77,14 @@ void initWiFi()
     reconectWiFi();
 }
   
-//Função: inicializa parâmetros de conexão MQTT(endereço do 
-//        broker, porta e seta função de callback)
-//Parâmetros: nenhum
-//Retorno: nenhum
+
 void initMQTT() 
 {
-    MQTT.setServer(BROKER_MQTT, BROKER_PORT);   //informa qual broker e porta deve ser conectado
-    MQTT.setCallback(mqtt_callback);            //atribui função de callback (função chamada quando qualquer informação de um dos tópicos subescritos chega)
+    MQTT.setServer(BROKER_MQTT, BROKER_PORT);   
+    MQTT.setCallback(mqtt_callback);           
 }
   
-//Função: função de callback 
-//        esta função é chamada toda vez que uma informação de 
-//        um dos tópicos subescritos chega)
-//Parâmetros: nenhum
-//Retorno: nenhum
+
 void mqtt_callback(char* topic, byte* payload, unsigned int length) 
 {
     String msg;
@@ -162,10 +146,7 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length)
     }
 }
   
-//Função: reconecta-se ao broker MQTT (caso ainda não esteja conectado ou em caso de a conexão cair)
-//        em caso de sucesso na conexão ou reconexão, o subscribe dos tópicos é refeito.
-//Parâmetros: nenhum
-//Retorno: nenhum
+
 void reconnectMQTT() 
 {
     while (!MQTT.connected()) 
@@ -186,9 +167,7 @@ void reconnectMQTT()
     }
 }
   
-//Função: reconecta-se ao WiFi
-//Parâmetros: nenhum
-//Retorno: nenhum
+
 void reconectWiFi() 
 {
     //se já está conectado a rede WI-FI, nada é feito. 
@@ -211,11 +190,7 @@ void reconectWiFi()
     Serial.println(WiFi.localIP());
 }
  
-//Função: verifica o estado das conexões WiFI e ao broker MQTT. 
-//        Em caso de desconexão (qualquer uma das duas), a conexão
-//        é refeita.
-//Parâmetros: nenhum
-//Retorno: nenhum
+
 void VerificaConexoesWiFIEMQTT(void)
 {
     if (!MQTT.connected()) 
@@ -224,9 +199,7 @@ void VerificaConexoesWiFIEMQTT(void)
      reconectWiFi(); //se não há conexão com o WiFI, a conexão é refeita
 }
  
-//Função: envia ao Broker o estado atual do output 
-//Parâmetros: nenhum
-//Retorno: nenhum
+
 void EnviaEstadoOutputMQTT(void)
 {
     char EstadosMotores[3];
@@ -240,9 +213,7 @@ void EnviaEstadoOutputMQTT(void)
     delay(1000);
 }
  
-//Função: inicializa os outputs em nível lógico baixo (desliga os dois motores)
-//Parâmetros: nenhum
-//Retorno: nenhum
+
 void InitOutputs(void)
 {
     pinMode(MOTOR_DIRETO, OUTPUT);
