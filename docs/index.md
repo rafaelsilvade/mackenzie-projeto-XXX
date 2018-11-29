@@ -1,8 +1,16 @@
-# *Nome do Projeto*
+# *Carrinho*
 
 ## Documentos
 * Documentação Hardware
+
+1 NodeMCU
+2 LEDs
+2 Resistores 200Ohm
+
 * Documentação Interfaces/Integração comunicação
+-Conexão Wifi
+-Interface WEB com protocolo MQTT
+
 * Documentação Software
 * Desenvolvimento
 * Entrega Final
